@@ -33,6 +33,7 @@ export function Navigation() {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40)
+    fn()
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
@@ -70,7 +71,7 @@ export function Navigation() {
   return (
     <>
       <header className="fixed left-0 right-0 z-50 transition-all duration-300" style={{
-        top: 0,
+        top: scrolled ? 0 : '35px',
         backgroundColor: scrolled ? 'rgba(250,250,247,0.96)' : 'transparent',
         borderBottom: scrolled ? '1px solid #DDE5E4' : '1px solid transparent',
         backdropFilter: scrolled ? 'blur(14px)' : 'none',
